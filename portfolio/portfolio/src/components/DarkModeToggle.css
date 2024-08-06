@@ -1,0 +1,59 @@
+
+  
+  .toggle-container {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 102px;
+    height: 102px;
+    margin: 20px;
+  }
+  
+  .toggle {
+    display: none; /* Varsayılan checkbox'ı gizleyin */
+  }
+  
+  .toggle + label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+
+.moon
+{
+    width: 100px;
+    height: 100px;
+    background: var(--main-dark-mode-bg-img);
+    
+}
+
+
+.moon-spots{
+    width: 100px;
+    height: 100px;
+    background: var(--main-dark-mode-spots-img);
+    background-size:cover;
+    background-repeat: repeat-x;
+    
+    mask-image: var(--main-dark-mode-bg-img);
+    animation: moonAnimate 15s linear infinite;
+}
+
+@keyframes moonAnimate {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+        background-position: 275px 0;
+    }
+  }
+
+  
