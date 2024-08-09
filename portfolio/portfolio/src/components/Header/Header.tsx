@@ -9,7 +9,7 @@ function Header (){
     <>
     <header className="navbar " data-theme={isDark ? "dark" : "light"}>
       <nav>
-        <ul className="navbar-list">
+        <ul className="navbar-list font-face-njord">
           <li className="navbar-item"><a href='#Home'>Home</a></li>
           <li className="navbar-item"><a href='#Experience'>Experience</a></li>
           <li className="navbar-item"><a href='#Projects'>Projects</a></li>

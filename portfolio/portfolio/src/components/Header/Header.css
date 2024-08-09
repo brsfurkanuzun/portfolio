@@ -43,6 +43,9 @@ a{
   li:hover {
     color: #98D7C2;
   }
+  li:hover a {
+    color: #98D7C2;
+  }
   
   li:focus:after,
   li:hover:after {
