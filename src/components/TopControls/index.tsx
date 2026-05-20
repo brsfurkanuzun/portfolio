@@ -1,5 +1,5 @@
 import { useTheme } from "../../context/ThemeContext";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage, useTranslation } from "../../context/LanguageContext";
 import DarkIcon from "../../assets/darkIcon";
 import LightIcon from "../../assets/lightIcon";
 import "./style.css";
@@ -7,28 +7,21 @@ import "./style.css";
 const TopControls = () => {
   const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLanguage();
+  const t = useTranslation();
   const knobLeft = theme === "dark" ? "37.5px" : "2.5px";
+
+  const toggleLanguage = () => setLanguage(language === "tr" ? "en" : "tr");
 
   return (
     <div className="top-controls">
-      <div className="top-controls__lang">
-        <button
-          type="button"
-          className={`lang-pill ${language === "tr" ? "active" : ""}`}
-          onClick={() => setLanguage("tr")}
-          aria-label="Türkçe"
-        >
-          TR
-        </button>
-        <button
-          type="button"
-          className={`lang-pill ${language === "en" ? "active" : ""}`}
-          onClick={() => setLanguage("en")}
-          aria-label="English"
-        >
-          EN
-        </button>
-      </div>
+      <button
+        type="button"
+        className="lang-pill lang-pill--toggle"
+        onClick={toggleLanguage}
+        aria-label={language === "tr" ? t.menu.switchToEn : t.menu.switchToTr}
+      >
+        {language === "tr" ? "EN" : "TR"}
+      </button>
 
       <div
         className="switch-toggle-container"

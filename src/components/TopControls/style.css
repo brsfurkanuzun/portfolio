@@ -9,11 +9,6 @@
   gap: 1rem;
 }
 
-.top-controls__lang {
-  display: flex;
-  gap: 0.35rem;
-}
-
 .lang-pill {
   width: 40px;
   height: 40px;
@@ -28,31 +23,8 @@
   padding: 0;
 }
 
-.lang-pill.active {
+.lang-pill--toggle {
   background: var(--icon-color1);
   color: var(--next-button-color);
   border-color: var(--icon-color1);
-}
-
-@media (max-width: 768px) {
-  .top-controls {
-    margin: 3vh 3vw 0 0;
-    gap: 0.5rem;
-  }
-
-  .lang-pill {
-    width: 34px;
-    height: 34px;
-    font-size: 0.65rem;
-  }
-
-  .switch-toggle-container {
-    width: 56px !important;
-    height: 28px !important;
-  }
-
-  .switch-toggle-knob {
-    width: 24px !important;
-    height: 24px !important;
-  }
 }

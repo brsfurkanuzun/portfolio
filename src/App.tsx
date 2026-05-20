@@ -24,7 +24,7 @@ export default function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const { theme, setTheme } = useTheme();
-  const { language } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const t = useTranslation();
 
   useEffect(() => {
@@ -35,6 +35,10 @@ export default function App() {
   }, []);
 
   const handleMenuNavigation = (link: string) => {
+    if (link === "/lang-toggle") {
+      setLanguage(language === "tr" ? "en" : "tr");
+      return;
+    }
     if (link === "/dark") {
       setTheme("dark");
       return;
@@ -69,6 +73,11 @@ export default function App() {
       { label: t.menu.works, ariaLabel: t.menu.works, link: "/services" },
       { label: t.menu.misc, ariaLabel: t.menu.misc, link: "/contact" },
       {
+        label: language === "tr" ? "EN" : "TR",
+        ariaLabel: language === "tr" ? t.menu.switchToEn : t.menu.switchToTr,
+        link: "/lang-toggle",
+      },
+      {
         label: theme === "dark" ? t.menu.light : t.menu.dark,
         ariaLabel: theme === "dark" ? t.menu.light : t.menu.dark,
         link: theme === "dark" ? "/light" : "/dark",
@@ -95,7 +104,7 @@ export default function App() {
           transition={{ duration: 1.5 }}
           style={{ width: "100%", height: "100%" }}
         >
-          <TopControls />
+          {!isMobile && <TopControls />}
           <Shape />
 
           {isMobile && (

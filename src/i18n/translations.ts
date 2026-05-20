@@ -114,6 +114,10 @@ export const translations = {
       misc: "Diğer",
       light: "Açık",
       dark: "Koyu",
+      langTr: "Türkçe",
+      langEn: "İngilizce",
+      switchToEn: "İngilizceye geç",
+      switchToTr: "Türkçeye geç",
     },
     nav: {
       goToExperience: "deneyime git",
@@ -220,6 +224,10 @@ export const translations = {
       misc: "Misc.",
       light: "Light",
       dark: "Dark",
+      langTr: "Turkish",
+      langEn: "English",
+      switchToEn: "Switch to English",
+      switchToTr: "Switch to Turkish",
     },
     nav: {
       goToExperience: "go to",
