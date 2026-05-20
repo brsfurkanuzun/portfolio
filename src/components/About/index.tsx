@@ -37,6 +37,7 @@ const About = () => {
             <div>
               <h1 className="title">
                 <DecryptedText
+                  key={`${language}-hello`}
                   sequential
                   animateOn="view"
                   text={t.about.hello}
@@ -45,6 +46,7 @@ const About = () => {
               </h1>
               <h1 className="title">
                 <DecryptedText
+                  key={`${language}-im`}
                   sequential
                   animateOn="view"
                   text={t.about.im}
@@ -53,6 +55,7 @@ const About = () => {
               </h1>
               <h1 className="title">
                 <DecryptedText
+                  key={`${language}-role`}
                   sequential
                   animateOn="view"
                   text={t.about.role}
