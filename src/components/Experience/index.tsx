@@ -2,67 +2,10 @@ import "./style.css";
 import Icon from "../../assets/experience";
 import DecryptedText from "../DecryptedText";
 import { useState, useEffect, useRef } from "react";
-
-const experienceData = [
-  {
-    title: "Software Development Specialist",
-    company: "@ETIYA",
-    location: "Hybrit, IST",
-    year: "Dec 21 – Jan 25",
-    responsibilities: [
-      "Developed REST & SOAP APIs using Java Springboot",
-      "Built web applications with .NET Core C# and NodeJS (Microservices)",
-      "Created XSL/XSLT transformations for API integration",
-      "Implemented ActiveMQ message queues for distributed systems",
-      "Managed microservices with Docker & Kubernetes",
-      "Developed order management processes with Camunda 7 & 8",
-      "Built UI with Angular for tracking orders",
-      "Analyzed and developed OpenAPIs",
-    ],
-  },
-  {
-    title: "Frontend Developer",
-    company: "@ConneXio Cloud",
-    location: "Remote, NY",
-    year: "Mar 22 - Aug 22",
-    responsibilities: [
-      "Built responsive website using React.js",
-      "Designed UI/UX prototypes with Figma",
-      "Implemented reusable components and managed state effectively",
-      "Integrated APIs and handled asynchronous data fetching",
-      "Ensured cross-browser compatibility and accessibility standards",
-      "Collaborated with backend developers to optimize performance",
-      "Wrote clean, maintainable, and well-documented code",
-    ],
-  },
-  {
-    title: "Game Developer / Level Designer",
-    company: "@ConneXio Cloud",
-    location: "Remote, NY",
-    year: "Mar 22 - Aug 22",
-    responsibilities: [
-      "Developed web3-compatible game using Unity & C#",
-      "Designed and implemented game levels and mechanics",
-      "Created AR and VR versions of the game",
-      "Collaborated with artists and designers to improve game visuals",
-      "Optimized game performance for web and mobile platforms",
-      "Implemented interactive features and gameplay systems",
-    ],
-  },
-
-  {
-    title: "Intern",
-    company: "@Caretta Software",
-    location: "On-site, IST",
-    year: "Jul 18 - Aug 18",
-    responsibilities: [
-      "Trained on database structures and relations",
-      "Developed CRM system using C# (.NET), improving user retention by 15%",
-    ],
-  },
-];
+import { useTranslation } from "../../context/LanguageContext";
 
 const Experience = () => {
+  const t = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
   const touchStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
@@ -85,7 +28,7 @@ const Experience = () => {
             <DecryptedText
               sequential
               animateOn="view"
-              text="Places that"
+              text={t.experience.title1}
               speed={120}
             />
           </h1>
@@ -93,7 +36,7 @@ const Experience = () => {
             <DecryptedText
               sequential
               animateOn="view"
-              text="I worked @"
+              text={t.experience.title2}
               speed={120}
             />
           </h1>
@@ -119,7 +62,7 @@ const Experience = () => {
           }
         }}
       >
-        {experienceData.map((job, index) => (
+        {t.experience.jobs.map((job, index) => (
           <div className="job-container" key={index}>
             <div className="job-title-container">
               <h3>{job.title}</h3>
@@ -134,7 +77,7 @@ const Experience = () => {
               <p>{job.year}</p>
             </div>
             <div className="job-resp">
-              <h4>Responsibilities</h4>
+              <h4>{t.experience.responsibilities}</h4>
               <ul>
                 {job.responsibilities.map((resp, i) => (
                   <li key={i}>{resp}</li>

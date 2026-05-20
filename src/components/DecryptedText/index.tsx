@@ -8,7 +8,7 @@ const styles = {
     whiteSpace: "pre-wrap",
   },
   srOnly: {
-    position: "absolute" as "absolute",
+    position: "absolute" as const,
     width: "1px",
     height: "1px",
     padding: 0,
@@ -57,7 +57,15 @@ export default function DecryptedText({
   const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    let interval: number; // NodeJS.Timeout yerine number
+    setDisplayText(text);
+    setRevealedIndices(new Set());
+    setHasAnimated(false);
+    setIsHovering(false);
+    setIsScrambling(false);
+  }, [text]);
+
+  useEffect(() => {
+    let interval: number;
     let currentIteration = 0;
 
     const getNextIndex = (revealedSet: Set<number>): number => {

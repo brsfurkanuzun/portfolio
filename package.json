@@ -1,12 +1,10 @@
 {
   "name": "interactive-resume",
-  "homepage": "https://brsfurkanuzun.github.io/resume",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "start": "vite",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

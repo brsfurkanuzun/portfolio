@@ -20,6 +20,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 5;
+  isolation: isolate;
+  pointer-events: none;
 }
 
 .home-name {
@@ -36,12 +39,19 @@
   font-style: italic;
   color: gray;
 }
+.home-circular-text {
+  z-index: 1;
+}
+
 .img-container-home {
-  background-color: var(--text-color);
+  background-color: #ffffff;
+  mix-blend-mode: difference;
   position: absolute;
   top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 150px;
-  height: 150px;
+  height: 0;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
   border-bottom-left-radius: 150px;
@@ -49,8 +59,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  animation: growDown 1s ease-in-out forwards;
-  
+  z-index: 2;
+  pointer-events: none;
+  will-change: height;
 }
 
 .mouse {
@@ -102,4 +113,15 @@
   padding: 0;
   color: gray;
   font-weight: normal;
+}
+
+.home-intro-text {
+  position: absolute;
+  top: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 4;
+  color: var(--text-color);
 }

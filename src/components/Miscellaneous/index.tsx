@@ -3,6 +3,7 @@ import "./style.css";
 import Icon from "../../assets/miscellaneous";
 import DecryptedText from "../DecryptedText";
 import Marquee from "react-fast-marquee";
+import { useTranslation } from "../../context/LanguageContext";
 
 const techs = [
   "Figma",
@@ -17,7 +18,7 @@ const techs = [
   "TypeScript",
   "JavaScript",
   "Docker",
-  "ActiveMQ",
+  "Kafka",
   "Next.js",
   "GraphQL",
   "REST API",
@@ -42,6 +43,7 @@ const spaces = [
 ];
 
 const Miscellaneous = () => {
+  const t = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ const Miscellaneous = () => {
                 <DecryptedText
                   sequential
                   animateOn="view"
-                  text="Can be"
+                  text={t.misc.title1}
                   speed={120}
                 />
               </h1>
@@ -73,7 +75,7 @@ const Miscellaneous = () => {
                 <DecryptedText
                   sequential
                   animateOn="view"
-                  text="Miscellaneous"
+                  text={t.misc.title2}
                   speed={120}
                 />
               </h1>
@@ -85,23 +87,16 @@ const Miscellaneous = () => {
             style={{ flexDirection: isMobile ? "column" : "row" }}
           >
             <div className="info-section">
-              <h3>Education</h3>
+              <h3>{t.misc.education}</h3>
               <div>
-                <p>2021 | 📍 Istanbul Bilgi University </p>
-                <h4>Bachelor's Degree in Computer Engineering</h4>
-                <p>
-                  I earned my Bachelor's degree in Computer Engineering from
-                  Istanbul Bilgi University, where I had the opportunity to
-                  combine my technical skills with creativity. For my graduation
-                  project, I developed BilgiLife, a fully interactive Unity 3D
-                  application that allows students and prospective students to
-                  explore the campus in a virtual environment.
-                </p>
+                <p>{t.misc.educationLine}</p>
+                <h4>{t.misc.educationDegree}</h4>
+                <p>{t.misc.educationText}</p>
               </div>
             </div>
 
             <div className="info-section">
-              <h3>Technology</h3>
+              <h3>{t.misc.technology}</h3>
               {isMobile ? (
                 <div style={{ width: "100%", overflow: "hidden" }}>
                   <Marquee speed={25}>
@@ -133,7 +128,7 @@ const Miscellaneous = () => {
 
               {isMobile && (
                 <div style={{ marginTop: "1rem" }}>
-                  <h3>My spaces</h3>
+                  <h3>{t.misc.mySpaces}</h3>
                   <div
                     style={{
                       display: "flex",
@@ -149,6 +144,7 @@ const Miscellaneous = () => {
                       >
                         <a
                           target="_blank"
+                          rel="noreferrer"
                           href={space.href}
                           style={{ textDecoration: "none" }}
                         >
@@ -170,9 +166,9 @@ const Miscellaneous = () => {
       {!isMobile && (
         <div className="right-panel-container">
           <div style={{ flexDirection: "column", display: "flex" }}>
-            <h3>My spaces</h3>
+            <h3>{t.misc.mySpaces}</h3>
             {spaces.map((space, idx) => (
-              <a key={idx} target="_blank" href={space.href}>
+              <a key={idx} target="_blank" rel="noreferrer" href={space.href}>
                 {space.name}
               </a>
             ))}

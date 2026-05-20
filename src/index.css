@@ -34,10 +34,8 @@ html.dark {
   --pagination-container-bg: #00000070;
   --pagination-bullet-bg: #ffffff16;
   --next-button-color: #000000;
-  --neon-highlight: #000000;
+  --neon-highlight: linear-gradient(90deg, #42e2f4, #fbf2b1);
   --magnet-line:#ffffff30;
-
-
 }
 
 html.neon {
@@ -55,11 +53,6 @@ html.neon {
   --pagination-bullet-bg: #ffffff;
   --next-button-color: #ffffff;
   --neon-highlight: linear-gradient(90deg, #42e2f4, #fbf2b1);
-  
-
-
-
-
 }
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -83,12 +76,16 @@ a {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--bg-color);
   color: var(--text-color);
+  overflow: hidden;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
 }
 
 h1 {
@@ -119,18 +116,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
 .switch-toggle-container {
   width: 70px;
   height: 35px;

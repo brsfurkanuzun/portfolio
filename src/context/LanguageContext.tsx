@@ -1,7 +1,9 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
+import type { Language } from "../i18n/translations";
+import { getTranslation } from "../i18n/translations";
 
-type Language = "tr" | "en";
+export type { Language };
 
 interface LangContextProps {
   language: Language;
@@ -10,16 +12,18 @@ interface LangContextProps {
 
 const LanguageContext = createContext<LangContextProps | undefined>(undefined);
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<Language>("tr");
+const getStoredLanguage = (): Language => {
+  const stored = localStorage.getItem("language");
+  return stored === "en" ? "en" : "tr";
+};
 
-  useEffect(() => {
-    const stored = localStorage.getItem("language") as Language;
-    if (stored) setLanguage(stored);
-  }, []);
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
+  const [language, setLanguage] = useState<Language>(getStoredLanguage);
 
   useEffect(() => {
     localStorage.setItem("language", language);
+    document.documentElement.lang = language;
+    document.title = getTranslation(language).pageTitle;
   }, [language]);
 
   return (
@@ -34,4 +38,9 @@ export const useLanguage = () => {
   if (!context)
     throw new Error("useLanguage must be used within LanguageProvider");
   return context;
+};
+
+export const useTranslation = () => {
+  const { language } = useLanguage();
+  return getTranslation(language);
 };

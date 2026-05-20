@@ -4,8 +4,10 @@ import {
   useRef,
   useState,
   useEffect,
+  type CSSProperties,
 } from "react";
 import { gsap } from "gsap";
+import { useTranslation } from "../../context/LanguageContext";
 import "./style.css";
 
 export interface StaggeredMenuItem {
@@ -56,6 +58,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   onMenuClose,
   onItemClick,
 }: StaggeredMenuProps) => {
+  const t = useTranslation();
+  const menuLabel = t.menuUi.open;
+  const closeLabel = t.menuUi.close;
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -66,7 +71,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const iconRef = useRef<HTMLSpanElement | null>(null);
   const textInnerRef = useRef<HTMLSpanElement | null>(null);
   const textWrapRef = useRef<HTMLSpanElement | null>(null);
-  const [textLines, setTextLines] = useState<string[]>(["Menu", "Close"]);
+  const [textLines, setTextLines] = useState<string[]>([
+    menuLabel,
+    closeLabel,
+  ]);
+
+  useEffect(() => {
+    setTextLines([menuLabel, closeLabel]);
+  }, [menuLabel, closeLabel]);
 
   const openTlRef = useRef<gsap.core.Timeline | null>(null);
   const closeTweenRef = useRef<gsap.core.Tween | null>(null);
@@ -352,13 +364,13 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (!inner) return;
     textCycleAnimRef.current?.kill();
 
-    const currentLabel = opening ? "Menu" : "Close";
-    const targetLabel = opening ? "Close" : "Menu";
+    const currentLabel = opening ? menuLabel : closeLabel;
+    const targetLabel = opening ? closeLabel : menuLabel;
     const cycles = 3;
     const seq: string[] = [currentLabel];
     let last = currentLabel;
     for (let i = 0; i < cycles; i++) {
-      last = last === "Menu" ? "Close" : "Menu";
+      last = last === menuLabel ? closeLabel : menuLabel;
       seq.push(last);
     }
     if (last !== targetLabel) seq.push(targetLabel);
@@ -373,7 +385,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       duration: 0.5 + lineCount * 0.07,
       ease: "power4.out",
     });
-  }, []);
+  }, [menuLabel, closeLabel]);
 
   const toggleMenu = useCallback(() => {
     const target = !openRef.current;
@@ -398,7 +410,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         "staggered-menu-wrapper" +
         (isFixed ? " fixed-wrapper" : "")
       }
-      style={accentColor ? { ["--sm-accent" as any]: accentColor } : undefined}
+      style={
+        accentColor
+          ? ({ "--sm-accent": accentColor } as CSSProperties)
+          : undefined
+      }
       data-position={position}
       data-open={open || undefined}
     >
@@ -435,7 +451,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <button
           ref={toggleBtnRef}
           className="sm-toggle"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? t.menuUi.closeAria : t.menuUi.openAria}
           aria-expanded={open}
           aria-controls="staggered-menu-panel"
           onClick={toggleMenu}

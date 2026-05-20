@@ -1,27 +1,30 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Pagination } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
 import "swiper/swiper-bundle.css";
 import "./swiper.css";
-import { useRef, useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import ArrowIcon from "./assets/arrowIcon";
+import { useRef, useState, useEffect, useMemo } from "react";
+import { motion } from "motion/react";
 import { useTheme } from "./context/ThemeContext";
+import { useTranslation } from "./context/LanguageContext";
 
 import Home from "./components/Home";
 import About from "./components/About";
 import Experience from "./components/Experience";
 import Miscellaneous from "./components/Miscellaneous";
-import ThemeSelector from "./components/ThemeSelector";
+import TopControls from "./components/TopControls";
+import CvDownload from "./components/CvDownload";
 import Shape from "./components/Shape";
 import Intro from "./components/Intro";
 import StaggeredMenu from "./components/StaggeredMenu";
 
 export default function App() {
-  const verticalSwiperRef = useRef<any>(null);
-  const horizontalSwiperRef = useRef<any>(null);
+  const verticalSwiperRef = useRef<SwiperType | null>(null);
+  const horizontalSwiperRef = useRef<SwiperType | null>(null);
   const [showIntro, setShowIntro] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const { theme, setTheme } = useTheme();
+  const t = useTranslation();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -30,15 +33,6 @@ export default function App() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleDownload = () => {
-    const link = document.createElement("a");
-    link.href =
-      "https://drive.google.com/uc?export=download&id=1O0mAhXP3su0I6atFE1qvsGoz6xsniRai";
-    link.download = "furkanuzun_resume.pdf";
-    link.click();
-  };
-
-  // Menü tıklama handler
   const handleMenuNavigation = (link: string) => {
     if (link === "/dark") {
       setTheme("dark");
@@ -67,18 +61,20 @@ export default function App() {
     }
   };
 
-  const menuItems = [
-    { label: "Home", ariaLabel: "Go to home page", link: "/" },
-    { label: "About", ariaLabel: "Learn about me", link: "/about" },
-    { label: "Works", ariaLabel: "View our services", link: "/services" },
-    { label: "Misc.", ariaLabel: "Get in touch", link: "/contact" },
-    {
-      label: theme === "dark" ? "Light" : "Dark",
-      ariaLabel:
-        theme === "dark" ? "Switch to light mode" : "Switch to dark mode",
-      link: theme === "dark" ? "/light" : "/dark",
-    },
-  ];
+  const menuItems = useMemo(
+    () => [
+      { label: t.menu.home, ariaLabel: t.menu.home, link: "/" },
+      { label: t.menu.about, ariaLabel: t.menu.about, link: "/about" },
+      { label: t.menu.works, ariaLabel: t.menu.works, link: "/services" },
+      { label: t.menu.misc, ariaLabel: t.menu.misc, link: "/contact" },
+      {
+        label: theme === "dark" ? t.menu.light : t.menu.dark,
+        ariaLabel: theme === "dark" ? t.menu.light : t.menu.dark,
+        link: theme === "dark" ? "/light" : "/dark",
+      },
+    ],
+    [t, theme]
+  );
 
   const socialItems = [
     { label: "Instagram", link: "https://www.instagram.com/barisfurkanuzun/" },
@@ -98,7 +94,7 @@ export default function App() {
           transition={{ duration: 1.5 }}
           style={{ width: "100%", height: "100%" }}
         >
-          <ThemeSelector />
+          <TopControls />
           <Shape />
 
           {isMobile && (
@@ -108,13 +104,11 @@ export default function App() {
               socialItems={socialItems}
               displaySocials={true}
               displayItemNumbering={true}
-              menuButtonColor="#000"
-              openMenuButtonColor="#000"
+              menuButtonColor={theme === "dark" ? "#ffffff" : "#000000"}
+              openMenuButtonColor={theme === "dark" ? "#ffffff" : "#000000"}
               changeMenuColorOnOpen={true}
               colors={["#42e2f4", "#fbf2b1"]}
               accentColor="#42e2f4"
-              onMenuOpen={() => console.log("Menu opened")}
-              onMenuClose={() => console.log("Menu closed")}
               onItemClick={handleMenuNavigation}
             />
           )}
@@ -151,10 +145,11 @@ export default function App() {
                   <About />
                   {!isMobile && (
                     <div
-                      onClick={() => horizontalSwiperRef.current.slideNext()}
+                      onClick={() => horizontalSwiperRef.current?.slideNext()}
                       className="next-button"
                     >
-                      go to <span className="neon-highlight">Experience</span>
+                      {t.nav.goToExperience}{" "}
+                      <span className="neon-highlight">{t.nav.experience}</span>
                     </div>
                   )}
                 </SwiperSlide>
@@ -163,31 +158,18 @@ export default function App() {
                   <Experience />
                   {!isMobile && (
                     <div
-                      onClick={() => horizontalSwiperRef.current.slideNext()}
+                      onClick={() => horizontalSwiperRef.current?.slideNext()}
                       className="next-button"
                     >
-                      go to{" "}
-                      <span className="neon-highlight">Miscellaneous</span>
+                      {t.nav.goToMisc}{" "}
+                      <span className="neon-highlight">{t.nav.miscellaneous}</span>
                     </div>
                   )}
                 </SwiperSlide>
 
                 <SwiperSlide>
                   <Miscellaneous />
-                  <div onClick={() => handleDownload()} className="next-button">
-                    {isMobile ? (
-                      <ArrowIcon
-                        width={24}
-                        height={24}
-                        primaryColor="var(--bg-color)"
-                      />
-                    ) : (
-                      <>
-                        download my{" "}
-                        <span className="neon-highlight">Resume</span>
-                      </>
-                    )}
-                  </div>
+                  <CvDownload isMobile={isMobile} />
                 </SwiperSlide>
               </Swiper>
             </SwiperSlide>
