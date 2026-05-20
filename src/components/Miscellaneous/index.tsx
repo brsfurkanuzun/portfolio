@@ -3,7 +3,7 @@ import "./style.css";
 import Icon from "../../assets/miscellaneous";
 import DecryptedText from "../DecryptedText";
 import Marquee from "react-fast-marquee";
-import { useTranslation } from "../../context/LanguageContext";
+import { useLanguage, useTranslation } from "../../context/LanguageContext";
 
 const techs = [
   "Figma",
@@ -43,6 +43,7 @@ const spaces = [
 ];
 
 const Miscellaneous = () => {
+  const { language } = useLanguage();
   const t = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -65,6 +66,7 @@ const Miscellaneous = () => {
             <div>
               <h1 className="title">
                 <DecryptedText
+                  key={`${language}-misc1`}
                   sequential
                   animateOn="view"
                   text={t.misc.title1}
@@ -73,6 +75,7 @@ const Miscellaneous = () => {
               </h1>
               <h1 className="title">
                 <DecryptedText
+                  key={`${language}-misc2`}
                   sequential
                   animateOn="view"
                   text={t.misc.title2}

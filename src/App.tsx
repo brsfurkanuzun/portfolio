@@ -6,7 +6,7 @@ import "./swiper.css";
 import { useRef, useState, useEffect, useMemo } from "react";
 import { motion } from "motion/react";
 import { useTheme } from "./context/ThemeContext";
-import { useTranslation } from "./context/LanguageContext";
+import { useLanguage, useTranslation } from "./context/LanguageContext";
 
 import Home from "./components/Home";
 import About from "./components/About";
@@ -24,6 +24,7 @@ export default function App() {
   const [showIntro, setShowIntro] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { language } = useLanguage();
   const t = useTranslation();
 
   useEffect(() => {
@@ -73,7 +74,7 @@ export default function App() {
         link: theme === "dark" ? "/light" : "/dark",
       },
     ],
-    [t, theme]
+    [language, t, theme]
   );
 
   const socialItems = [

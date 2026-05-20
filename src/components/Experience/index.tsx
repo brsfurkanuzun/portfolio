@@ -2,9 +2,10 @@ import "./style.css";
 import Icon from "../../assets/experience";
 import DecryptedText from "../DecryptedText";
 import { useState, useEffect, useRef } from "react";
-import { useTranslation } from "../../context/LanguageContext";
+import { useLanguage, useTranslation } from "../../context/LanguageContext";
 
 const Experience = () => {
+  const { language } = useLanguage();
   const t = useTranslation();
   const [isMobile, setIsMobile] = useState(false);
   const touchStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -26,6 +27,7 @@ const Experience = () => {
         <div>
           <h1 className="title">
             <DecryptedText
+              key={`${language}-exp1`}
               sequential
               animateOn="view"
               text={t.experience.title1}
@@ -34,6 +36,7 @@ const Experience = () => {
           </h1>
           <h1 className="title">
             <DecryptedText
+              key={`${language}-exp2`}
               sequential
               animateOn="view"
               text={t.experience.title2}
