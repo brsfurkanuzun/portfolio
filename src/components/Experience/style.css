@@ -1,0 +1,111 @@
+.blured-container-bottom {
+  position: absolute;
+  bottom: 0;
+  height: 50vh;
+  background-color: var(--blur-background);
+  width: 100vw;
+  backdrop-filter: blur(20px);
+  padding-left: 5vw;
+  display: flex;
+}
+.job-container {
+  height: 100%;
+  width: 500px;
+  border-top: 1px solid var(--text-color);
+}
+.job-date {
+  position: absolute;
+  top: -15px;
+  width: 150px;
+  height: 30px;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--text-color);
+  z-index: 10;
+}
+.job-title-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: -6.5rem;
+}
+.job-title-container h3,
+.job-title-container p {
+  line-height: 0px;
+}
+.title-container {
+  padding: 2vw 5vw;
+}
+.location-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+.job-location{
+  background: linear-gradient(90deg, #42e2f4, #fbf2b1);
+  color: black;
+  padding: 0px 12px;
+  width: fit-content;
+  height: fit-content;
+  font-weight: bold;
+  border-radius: 50px;
+  line-height: normal;
+  max-height: 20px;
+  display: flex;
+  align-items: center;
+}
+.job-location p{
+  font-size: 14px;
+}
+
+/* Mobil CSS */
+@media (max-width: 768px) {
+  .blured-container-bottom {
+    position: relative;
+    height: 60vh;
+    max-height: 100vh;   /* Ekranı aşarsa scroll */
+    overflow-y: auto;    /* Dikey scroll aktif */
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1.5rem;
+    padding-bottom: 40vh;
+  }
+
+  .job-container {
+    width: 95vw;
+    height: auto;
+    border-top: 0px solid var(--text-color);
+  }
+
+  .job-date {
+    position: relative;
+    top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .job-title-container {
+    position: relative;
+    top: 0;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .job-title-container h3,
+  .job-title-container p {
+    line-height: normal;
+  }
+
+  .location-container {
+    flex-direction: row;
+    gap: 6px;
+  }
+
+  .job-resp ul {
+    padding-left: 1rem;
+  }
+}

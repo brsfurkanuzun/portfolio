@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2022",
+    "lib": ["ES2023"],
+    "moduleResolution": "bundler",
+    "noEmit": true
+  },
+  "include": ["vite.config.ts"]
+}

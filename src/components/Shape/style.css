@@ -1,0 +1,11 @@
+.shape {
+  position: absolute;
+  transform: translateX(-50%) rotate(-45deg);
+  width: min(80vw, 1200px);
+  height: min(25vh, 300px);
+  background: var(--shape-color);
+  border-radius: 999px;
+  bottom: 5vh;
+  left: 50%;
+  z-index: 0;
+}

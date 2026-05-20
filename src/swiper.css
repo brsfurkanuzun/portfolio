@@ -1,0 +1,58 @@
+.custom-pagination {
+  position: absolute;
+  width: 200px !important;
+  height: 44px !important;
+  bottom: 60px !important;
+  left: 5% !important;
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+  background: var(--pagination-container-bg);
+  border-radius: 50px;
+  z-index: 10;
+}
+
+/* Bullet stilleri */
+.custom-pagination .swiper-pagination-bullet {
+  height: 36px;
+  width: 64px;
+  opacity: 1;
+  transition: all 0.3s ease;
+  text-align: center;
+  color: var(--icon-color2);
+  line-height: 36px;
+  border-radius: 50px;
+  background: transparent;
+  cursor: pointer;
+  margin: 0 !important;
+}
+
+.custom-pagination .swiper-pagination-bullet-active {
+  background: var(--pagination-bullet-bg);
+  opacity: 1;
+  color: var(--icon-color1);
+  font-weight: bold;
+}
+
+/* Swiper’ın default width:100% stilini ezmek için */
+.custom-pagination .swiper-pagination-bullets.swiper-pagination-horizontal {
+  width: 0px !important;
+}
+.next-button {
+  position: absolute;
+  cursor: pointer;
+  bottom: 60px;
+  right: 10%;
+  z-index: 10;
+  background-color: var(--icon-color1);
+  border-radius: 50px;
+  color: var(--next-button-color);
+  padding: 0.3em 1em;
+}
+.neon-highlight {
+  background: var(--neon-highlight);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 1.1em;
+}

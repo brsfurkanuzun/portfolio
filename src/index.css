@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html.light {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --button-bg-color: #ffffff;
+  --switch-toggle-background: #00000016;
+  --switch-knob-color: linear-gradient(90deg, #494949, #828082);
+  --shape-color: linear-gradient(90deg, #00000000, #000000);
+  --blur-background: #ffffff25;
+  --tag-button-background: #00000008;
+  --icon-color1: #000000;
+  --icon-color2: #00000030;
+  --pagination-container-bg: #00000024;
+  --pagination-bullet-bg: #ffffff;
+  --next-button-color: #ffffff;
+  --neon-highlight: linear-gradient(90deg, #42e2f4, #fbf2b1);
+  --magnet-line:#00000030;
+}
+
+html.dark {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+  --button-bg-color: #ffffff16;
+  --switch-toggle-background: #ffffff16;
+  --switch-knob-color: linear-gradient(90deg, #d1d1d1, #939393);
+  --shape-color: linear-gradient(90deg, #ffffff00, #ffffff);
+  --blur-background: #35353525;
+  --tag-button-background: #ffffff08;
+  --icon-color1: #ffffff;
+  --icon-color2: #ffffff30;
+  --pagination-container-bg: #00000070;
+  --pagination-bullet-bg: #ffffff16;
+  --next-button-color: #000000;
+  --neon-highlight: #000000;
+  --magnet-line:#ffffff30;
+
+
+}
+
+html.neon {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --button-bg-color: #ffffff;
+  --switch-toggle-background: #00000016;
+  --switch-knob-color: linear-gradient(90deg, #42e2f4, #fbf2b1);
+  --shape-color: linear-gradient(90deg, #42e2f454 45%, #fbf2b1 140%);
+  --blur-background: #ffffff70;
+  --tag-button-background: #00000008;
+  --icon-color1: #000000;
+  --icon-color2: #00000030;
+  --pagination-container-bg: #00000024;
+  --pagination-bullet-bg: #ffffff;
+  --next-button-color: #ffffff;
+  --neon-highlight: linear-gradient(90deg, #42e2f4, #fbf2b1);
+  
+
+
+
+
+}
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: inherit;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 2em;
+  line-height: 1.1;
+}
+p {
+  font-size: 16px;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--button-bg-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+.switch-toggle-container {
+  width: 70px;
+  height: 35px;
+  background-color: var(--switch-toggle-background);
+}
+.switch-toggle-knob {
+  background: var(--switch-knob-color);
+  transition: background 0.3s ease;
+  width: 30px;
+  height: 30px;
+}
+.img-container {
+  background-color: var(--text-color);
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about-profile-img {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+button {
+  outline: none;
+  border: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:active {
+  outline: none;
+}
+
+body {
+  height: 100dvh; /* Dynamic Viewport Height */
+  height: -webkit-fill-available;
+}

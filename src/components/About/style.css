@@ -1,0 +1,102 @@
+.blured-container-about {
+  height: 100vh;
+  width: 65vw;
+  background-color: var(--blur-background);
+  display: flex;
+  z-index: 1;
+  backdrop-filter: blur(20px);
+}
+.blured-container-content-about {
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  line-height: 20px;
+}
+
+.title-container-about {
+  padding-left: 5vw;
+  padding-top: 5vh;
+  gap: 0.5rem;
+}
+
+.right-panel-container {
+  padding-top: 10vh;
+  margin-left: 100px;
+  max-width: 25vw;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+.tags-container {
+  max-width: 25rem;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+  column-gap: 1rem;
+}
+
+.info-section {
+  max-width: 25vw;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #EC6F66, #F3A183);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+.gradient-career {
+  background: linear-gradient(90deg, #11998e, #38ef7d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  
+  .blured-container-content-about > div {
+    flex-direction: row;
+    width: 100vw;
+    padding-left: 2vw; 
+  }
+  .blured-container-about {
+  width: 100vw;
+}
+
+ .info-section {
+  width:95vw;
+  display: flex;
+  flex-direction: column;
+  max-width: none; 
+  height: 100%;
+}
+
+  .paragraph {
+    max-height: 30vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 0.5rem;
+  }
+
+  .right-panel-container {
+    display: none;
+  }
+}
+.mobile-tabs {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.mobile-tabs h3 {
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  opacity: 0.3; 
+}
+
+.mobile-tabs h3.active {
+  opacity: 1; 
+}
